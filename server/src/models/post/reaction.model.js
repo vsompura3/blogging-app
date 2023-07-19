@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose'
+import { Schema, model } from 'mongoose'
 
 const reactionSchema = new Schema(
   {
@@ -21,5 +21,5 @@ const reactionSchema = new Schema(
   { timestamps: true },
 )
 
-const Reaction = mongoose.model('Reaction', reactionSchema)
+const Reaction = model('Reaction', reactionSchema)
 export default Reaction

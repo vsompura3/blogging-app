@@ -1,5 +1,5 @@
-import { Schema } from 'mongoose'
-import slugifyPostTitle from '../../middleware/postSlug.midleware.js'
+import { Schema, model } from 'mongoose'
+import slugifyPostTitle from '../../middleware/post/post.midleware.js'
 
 const postSchema = new Schema(
   {
@@ -57,9 +57,6 @@ const postSchema = new Schema(
 /* 
   @desc - Create a slug from the post title
 */
-const modifiedSchema = slugifyPostTitle(postSchema, {
-  lower: true,
-  remove: /[*+~.()'"!:@]/g,
-})
-const Post = mongoose.model('Post', modifiedSchema)
+const modifiedSchema = slugifyPostTitle(postSchema)
+const Post = model('Post', modifiedSchema)
 export default Post

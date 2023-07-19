@@ -1,5 +1,5 @@
-import { Schema } from 'mongoose'
-import hashingPassword from '../../middleware/hashPassword.middleware.js'
+import { Schema, model } from 'mongoose'
+import userMiddleware from '../../middleware/user/user.middleware.js'
 
 const userSchema = new Schema(
   {
@@ -7,13 +7,13 @@ const userSchema = new Schema(
       type: String,
       required: true,
       trim: true,
-      maxlength: 64,
+      maxLength: 32,
     },
     email: {
       type: String,
       required: true,
       trim: true,
-      maxlength: 64,
+      maxLength: 32,
       unique: true,
     },
     username: {
@@ -30,11 +30,10 @@ const userSchema = new Schema(
       required: true,
       trim: true,
       minlength: 8,
-      maxlength: 64,
+      maxLength: 32,
     },
     profilePhoto: {
       type: String,
-      default: '../../assets/images/male-user-placeholder.webp',
     },
     dateOfBirth: {
       type: Date,
@@ -42,7 +41,6 @@ const userSchema = new Schema(
     },
     age: {
       type: Number,
-      required: true,
     },
     bio: {
       type: String,
@@ -51,20 +49,20 @@ const userSchema = new Schema(
     },
     role: {
       type: String,
-      enum: ['user', 'admin'],
       default: 'user',
+    },
+    gender: {
+      type: String,
+      enum: ['M', 'F'],
+      maxlength: 1,
     },
     isActive: {
       type: Boolean,
       default: false,
     },
-    gender: {
-      type: String,
-      enum: ['M', 'F', 'O'],
-      maxlength: 1,
-    },
     whenBanned: {
       type: Date,
+      default: null,
     },
   },
   {
@@ -72,9 +70,20 @@ const userSchema = new Schema(
   },
 )
 
-/* 
-  @desc - Check if password matches the hashed password in the database
-*/
-const modifiedSchema = hashingPassword(userSchema)
-const User = mongoose.model('User', modifiedSchema)
+userSchema.pre('save', async function (next) {
+  if (
+    !this.isModified('dateOfBirth') ||
+    !this.isModified('profilePhoto') ||
+    !this.isModified('password')
+  ) {
+    next()
+  }
+  userMiddleware(this, next)
+})
+userSchema.methods.matchPassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password)
+}
+
+const User = model('User', userSchema)
+export { userSchema }
 export default User
