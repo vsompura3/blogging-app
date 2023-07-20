@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs'
-import { differenceInYears } from 'date-fns'
+import calculateAge from '../../utils/helpers/calculateAge.js'
 
 /* 
   @desc - The salt value for the hashing algorithm 
@@ -13,7 +13,7 @@ const SALT_VALUE = 10
 const userMiddleware = async schema => {
   console.log(this)
   await setPlaceholderPic(schema)
-  await calculateAge(schema)
+  await setAgeBasedOnDOB(schema)
   await hashingPassword(schema)
 }
 
@@ -21,8 +21,8 @@ const userMiddleware = async schema => {
   @desc - Check if password matches the hashed password in the database 
   @param {Schema} schema - The schema to be used
 */
-const calculateAge = async schema => {
-  schema.age = differenceInYears(new Date(), schema.dateOfBirth)
+const setAgeBasedOnDOB = async schema => {
+  schema.age = calculateAge(schema.dateOfBirth)
 }
 
 /* 
