@@ -1,4 +1,20 @@
+import { useEffect, useState } from 'react'
+
 function App() {
+  const [user, setUser] = useState([])
+
+  useEffect(() => {
+    fetch(import.meta.env.VITE_BASE_URL + '/api/v1/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ _id: '64b8280f25c0e6ae1f91a60e' }),
+    })
+      .then(res => res.json())
+      .then(data => setUser(data))
+  }, [])
+
   return (
     <>
       <div className="max-w-screen min-h-screen mx-auto">
@@ -29,6 +45,14 @@ function App() {
             <rect width="100%" height="100%" fill="url(#grid-pattern)"></rect>
           </svg>
         </div>
+        <div>{JSON.stringify(user, null, 2)}</div>
+        {user.map(u => (
+          <div key={u._id} className="m-24">
+            <h2>{u.name}</h2>
+            <p>{u.bio}</p>
+            <img src={u.profilePhoto} className="w-24 h-24 aspect-square" />
+          </div>
+        ))}
       </div>
     </>
   )
