@@ -51,9 +51,9 @@ You can use Postman to test the backend API endpoints:
 
 ## Features
 
-- User authentication and authorization (not covered in this setup).
-- CRUD operations for blog posts.
-- Infinite scrolling for blog posts.
+- User authentication and authorization (ongoing).
+- CRUD operations for blog posts. (ongoing)
+- Infinite scrolling for blog posts. (ongoing)
 
 Feel free to explore the code and customize the application as per your
 requirements. PR and contributions are much appreciated.
