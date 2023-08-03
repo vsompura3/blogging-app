@@ -1,3 +1,5 @@
+import DemoForm from './DemoForm'
+
 function App() {
   return (
     <>
@@ -29,6 +31,7 @@ function App() {
             <rect width="100%" height="100%" fill="url(#grid-pattern)"></rect>
           </svg>
         </div>
+        <DemoForm />
       </div>
     </>
   )

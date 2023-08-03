@@ -25,8 +25,7 @@ const UserController = {
   /* @desc - Get a user's profile by their id */
   async getUserProfile(req, res) {
     try {
-      console.log(req.body)
-      const user = await User.findById(req.body._id)
+      const user = await User.findById(req.body.id)
       if (user) {
         res.json([user])
       } else {

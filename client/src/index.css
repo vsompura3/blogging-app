@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+form {
+  margin-top: 2em;
+  max-width: 45ch;
+  margin-inline: auto;
+  display: grid;
+  gap: 1rem;
+}
+
+form > div {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+fieldset {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+fieldset > div {
+  display: flex;
+  gap: 0.25rem;
+}
+
+fieldset > div > input:last-of-type {
+  margin-left: 2em;
+}
+
+input,
+textarea {
+  @apply border border-slate-600 rounded px-2 py-1;
+}
+
+button[type='submit'] {
+  @apply bg-slate-600 text-white rounded px-2 py-1;
+}
