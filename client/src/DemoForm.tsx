@@ -1,8 +1,8 @@
+import { Button } from './components/ui/button'
+
 const DemoForm = () => {
-  const handleSubmit = e => {
-    e.preventDefault()
-    const formData = new FormData(e.target)
-    console.log(formData)
+  const handleSubmit = () => {
+    console.log('Form submitted')
   }
 
   return (
@@ -42,8 +42,8 @@ const DemoForm = () => {
         <textarea
           name="bio"
           id="bio"
-          cols="30"
-          rows="2"
+          cols={30}
+          rows={2}
           placeholder="Enter description"
         ></textarea>
       </div>
@@ -56,7 +56,7 @@ const DemoForm = () => {
           <label htmlFor="female">Female</label>
         </div>
       </fieldset>
-      <button type="submit">Submit</button>
+      <Button type="submit">Submit</Button>
     </form>
   )
 }
