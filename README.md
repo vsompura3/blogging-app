@@ -58,6 +58,6 @@ You can use Postman to test the backend API endpoints:
 Feel free to explore the code and customize the application as per your
 requirements. PR and contributions are much appreciated.
 
-P.S. - The project will use TypeScript in future.
+📌 P.S. - The project will be migrated to TypeScript soon.
 
 Happy coding! 🚀
