@@ -9,7 +9,7 @@ export default function Home() {
         </h1>
         <p>one blog to rule them all.</p>
       </section>
-      <div className="absolute inset-x-0 top-0 h-96 rotate-180 text-gray-500/20 opacity-60 [mask-image:linear-gradient(to_bottom,transparent,white)]">
+      <div className="absolute -z-10 inset-x-0 top-0 h-96 rotate-180 text-gray-500/20 opacity-60 [mask-image:linear-gradient(to_bottom,transparent,white)]">
         <svg
           className="absolute inset-0 h-full w-full"
           xmlns="http://www.w3.org/2000/svg"

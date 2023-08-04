@@ -56,7 +56,9 @@ const DemoForm = () => {
           <label htmlFor="female">Female</label>
         </div>
       </fieldset>
-      <Button type="submit">Submit</Button>
+      <Button asChild type="submit">
+        <button>Submit</button>
+      </Button>
     </form>
   )
 }
