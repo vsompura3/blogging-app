@@ -7,13 +7,13 @@ const UserController = {
       const user = req.body
       const doesUserExist = await User.findOne({ email: user.email })
       const isUsernameTaken = await User.findOne({ username: user.username })
-      if (isUsernameTaken) {
-        res.status(400)
-        throw new Error('Username is already taken. Please try another one.')
-      }
       if (doesUserExist) {
         res.status(400)
         throw new Error('User already exists')
+      }
+      if (isUsernameTaken) {
+        res.status(400)
+        throw new Error('Username is already taken. Please try another one.')
       }
       const newUser = await User.create(user)
       if (newUser) {

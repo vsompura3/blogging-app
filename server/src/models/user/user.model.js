@@ -79,7 +79,7 @@ userSchema.pre('save', async function (next) {
   ) {
     next()
   }
-  userMiddleware(this)
+  await userMiddleware(this)
 })
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password)
