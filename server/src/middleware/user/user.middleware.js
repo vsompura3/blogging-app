@@ -11,10 +11,9 @@ const SALT_VALUE = 10
   @param {Schema} schema - The schema to be used
 */
 const userMiddleware = async schema => {
-  console.log(this)
-  await setPlaceholderPic(schema)
-  await setAgeBasedOnDOB(schema)
   await hashingPassword(schema)
+  await setAgeBasedOnDOB(schema)
+  await setPlaceholderPic(schema)
 }
 
 /* 
@@ -47,7 +46,7 @@ const setPlaceholderPic = async schema => {
 */
 const hashingPassword = async schema => {
   const salt = await bcrypt.genSalt(SALT_VALUE)
-  schema.password = bcrypt.hash(schema.password, salt)
+  schema.password = await bcrypt.hash(schema.password, salt)
 }
 
 export default userMiddleware
