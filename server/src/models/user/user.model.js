@@ -1,3 +1,4 @@
+import bcrypt from 'bcryptjs'
 import { Schema, model } from 'mongoose'
 import userMiddleware from '../../middleware/user/user.middleware.js'
 
